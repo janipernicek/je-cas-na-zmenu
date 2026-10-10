@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f9f6f2">
+<meta name="description" content="Je čas na změnu? Jemný sebereflexní test od Jany Pernicové, který ti pomůže zastavit se a naslouchat sama sobě.">
+<title>Je čas na změnu? | Jana Pernicová</title>
+
+<style>
+:root {
+  --mint: #7ececa;
+  --pink: #f4a7b9;
+  --purple: #9e83b8;
+  --dark-purple: #65517d;
+  --cream: #f9f6f2;
+  --text: #39343d;
+  --muted: #817986;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(126,206,202,.19), transparent 38%),
+    radial-gradient(ellipse at bottom right, rgba(244,167,185,.18), transparent 38%),
+    var(--cream);
+  color: var(--text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  width: min(100% - 32px, 720px);
+  margin: 0 auto;
+  padding: 35px 0 28px;
+}
+
+.top-label {
+  text-align: center;
+  color: var(--dark-purple);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 24px 16px 30px;
+}
+
+.symbol {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--mint), var(--purple));
+  color: white;
+  font-size: 32px;
+  box-shadow: 0 8px 25px rgba(101,81,125,.15);
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 8vw, 58px);
+  font-weight: normal;
+  line-height: 1.12;
+  margin: 0 0 18px;
+  letter-spacing: -1.5px;
+}
+
+h1 span {
+  color: var(--dark-purple);
+  font-style: italic;
+}
+
+.subtitle {
+  max-width: 510px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #69616e;
+}
+
+.intro {
+  margin: 12px 0 24px;
+  padding: 25px;
+  border: 1px solid rgba(158,131,184,.2);
+  border-radius: 22px;
+  background: rgba(255,255,255,.76);
+  text-align: center;
+}
+
+.intro p {
+  margin: 0 0 12px;
+}
+
+.intro p:last-child {
+  margin-bottom: 0;
+}
+
+.soft-note {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--dark-purple);
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.primary-button {
+  background: var(--dark-purple);
+  color: white;
+  box-shadow: 0 7px 18px rgba(101,81,125,.17);
+}
+
+.secondary-button {
+  background: #f1ebf5;
+  color: var(--dark-purple);
+  margin-top: 12px;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(101,81,125,.15);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--mint);
+  outline-offset: 4px;
+}
+
+.test-card,
+.result-card {
+  background: rgba(255,255,255,.91);
+  border: 1px solid rgba(158,131,184,.18);
+  border-radius: 24px;
+  padding: clamp(20px, 5vw, 36px);
+  box-shadow: 0 12px 40px rgba(74,57,87,.06);
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 10px;
+  background: #eee8f0;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--mint), var(--purple));
+  border-radius: 10px;
+  transition: width .3s;
+}
+
+.question-number {
+  color: var(--dark-purple);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 5vw, 34px);
+  line-height: 1.3;
+  font-weight: normal;
+  margin: 0 0 24px;
+}
+
+.answers {
+  display: grid;
+  gap: 12px;
+}
+
+.answer {
+  width: 100%;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  padding: 15px 16px;
+  text-align: left;
+  border: 1px solid #e7dfea;
+  border-radius: 15px;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 1.5;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.answer:hover {
+  border-color: var(--purple);
+  transform: translateY(-1px);
+}
+
+.answer.selected {
+  border-color: var(--dark-purple);
+  background: #f5f0f8;
+}
+
+.answer-mark {
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d7cbdc;
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--dark-purple);
+}
+
+.answer.selected .answer-mark {
+  background: var(--dark-purple);
+  color: white;
+  border-color: var(--dark-purple);
+}
+
+.navigation {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.navigation button {
+  flex: 1;
+}
+
+.back-button {
+  border: 1px solid #e4dce8;
+  background: transparent;
+  color: var(--dark-purple);
+  border-radius: 14px;
+  min-height: 52px;
+  cursor: pointer;
+}
+
+.back-button:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.result-card {
+  text-align: center;
+}
+
+.result-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.result-kicker {
+  color: var(--dark-purple);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.result-card h2 {
+  font-size: clamp(29px, 6vw, 40px);
+  margin-bottom: 18px;
+}
+
+.result-text {
+  text-align: left;
+  color: #5d5662;
+}
+
+.result-text p {
+  margin: 0 0 16px;
+}
+
+.reflection {
+  padding: 20px;
+  border-radius: 17px;
+  background: #f4eff7;
+  color: var(--dark-purple);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-style: italic;
+  margin: 24px 0;
+}
+
+.author {
+  margin-top: 28px;
+  padding: 30px 22px;
+  text-align: center;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(158,131,184,.18);
+  border-radius: 24px;
+}
+
+.author-eyebrow {
+  color: var(--dark-purple);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.author h2 {
+  margin: 7px 0 12px;
+  font-size: 27px;
+}
+
+.author p {
+  color: #69616e;
+  font-size: 14px;
+  margin: 0 auto 16px;
+  max-width: 480px;
+}
+
+.author-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.author-links a {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #f1ebf5;
+  border-radius: 30px;
+  color: var(--dark-purple);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.author-links a:hover {
+  background: #e9deef;
+}
+
+.signature {
+  font-size: 12px;
+  color: #958a9a;
+  margin-top: 24px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #958a9a;
+  padding: 25px 0 5px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  .page {
+    width: min(100% - 22px, 720px);
+    padding-top: 22px;
+  }
+
+  .hero {
+    padding: 20px 8px 25px;
+  }
+
+  .intro {
+    padding: 21px 18px;
+  }
+
+  .navigation {
+    gap: 8px;
+  }
+
+  .answer {
+    padding: 14px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <div class="top-label">Jana Pernicová · chvíle pro tebe</div>
+
+  <header class="hero">
+    <div class="symbol" aria-hidden="true">✧</div>
+    <h1>Je čas<br>na <span>změnu?</span></h1>
+    <p class="subtitle">
+      Sedm otázek. Chvíle jen pro sebe.
+      A možná nový pohled na to, co právě prožíváš.
+    </p>
+  </header>
+
+  <section class="intro" id="intro">
+    <p>
+      Někdy pokračujeme ve stejném tempu tak dlouho,
+      že zapomeneme zjišťovat, jak nám vlastně je.
+    </p>
+    <p>
+      Tento krátký test tě zve k zastavení.
+      Nečeká tě žádná zkouška ani správné odpovědi.
+      Jen prostor být k sobě upřímná.
+    </p>
+    <p class="soft-note">
+      Odpovídej podle toho, jak se cítíš právě teď.
+    </p>
+    <button class="primary-button" id="startButton">
+      Chci začít svůj test&nbsp; →
+    </button>
+  </section>
+
+  <section class="test-card hidden" id="test" aria-live="polite">
+    <div class="progress-row">
+      <span id="progressText">Otázka 1 ze 7</span>
+      <span id="progressPercent">14 %</span>
+    </div>
+
+    <div
+      class="progress-track"
+      role="progressbar"
+      aria-label="Postup testem"
+      aria-valuemin="0"
+      aria-valuemax="7"
+      aria-valuenow="1"
+      id="progressBar"
+    >
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="question-number" id="questionNumber">ZASTAVENÍ 01</div>
+    <h2 id="questionTitle"></h2>
+    <div class="answers" id="answers"></div>
+
+    <div class="navigation">
+      <button class="back-button" id="backButton" type="button">
+        ← Zpět
+      </button>
+      <button class="primary-button" id="nextButton" type="button" disabled>
+        Další otázka →
+      </button>
+    </div>
+  </section>
+
+  <section class="result-card hidden" id="result" aria-live="polite">
+    <div class="result-icon" id="resultIcon">💜</div>
+    <div class="result-kicker">Tvoje chvíle pravdy</div>
+    <h2 id="resultTitle"></h2>
+    <div class="result-text" id="resultText"></div>
+    <div class="reflection" id="reflection"></div>
+
+    <button class="primary-button" id="contactButton" type="button">
+      Chci udělat první krok
+    </button>
+
+    <button class="secondary-button" id="restartButton" type="button">
+      Projít test znovu ↻
+    </button>
+  </section>
+
+  <section class="author">
+    <div class="author-eyebrow">S láskou pro tebe</div>
+    <h2>Jana Pernicová</h2>
+    <p>
+      Věřím, že změna nemusí začínat velkým rozhodnutím.
+      Někdy začíná jedinou otázkou, chvílí ticha
+      a ochotou naslouchat sama sobě.
+    </p>
+    <p>
+      Pokud s tebou některá otázka rezonovala,
+      můžeš se mnou zůstat v kontaktu.
+    </p>
+
+    <div class="author-links">
+      <a href="https://www.instagram.com/jana.pernicova/"
+         target="_blank" rel="noopener noreferrer">
+        Instagram · @jana.pernicova
+      </a>
+      <a href="https://wa.me/420773664342"
+         target="_blank" rel="noopener noreferrer">
+        Napiš mi na WhatsApp
+      </a>
+    </div>
+
+    <div class="signature">
+      © 2026 Jana Pernicová<br>
+      Je čas na změnu? · návrat k sobě 💜
+    </div>
+  </section>
+
+  <footer class="footer">
+    Tento test je pozvánkou k sebereflexi, nikoli diagnózou
+    ani návodem, jak se musíš rozhodnout.
+  </footer>
+
+</main>
+
+<script>
+const questions = [
+  {
+    title: "Když se ráno probudíš, jaký pocit tě nejčastěji provází?",
+    answers: [
+      { text: "Těším se na den a mám v sobě alespoň trochu energie.", score: 0 },
+      { text: "Vstávám a funguji, ale často jedu spíš na automat.", score: 1 },
+      { text: "Už při představě dalšího dne cítím únavu nebo tíhu.", score: 2 }
+    ]
+  },
+  {
+    title: "Kolik prostoru máš ve svém životě opravdu sama pro sebe?",
+    answers: [
+      { text: "Dokážu si najít chvíle pro sebe a většinou si je dovolím užít.", score: 0 },
+      { text: "Prostor si najdu málokdy a často mám pocit, že bych měla dělat něco jiného.", score: 1 },
+      { text: "Moje potřeby bývají až na posledním místě.", score: 2 }
+    ]
+  },
+  {
+    title: "Když přemýšlíš o svém současném životě, co cítíš?",
+    answers: [
+      { text: "V zásadě mi dává smysl, i když ne všechno je ideální.", score: 0 },
+      { text: "Něco mi chybí, ale zatím nedokážu přesně pojmenovat co.", score: 1 },
+      { text: "Uvnitř cítím, že takhle už nechci pokračovat pořád dál.", score: 2 }
+    ]
+  },
+  {
+    title: "Jak často uděláš něco jen proto, že to od tebe ostatní očekávají?",
+    answers: [
+      { text: "Umím rozlišit, co chci já a co chtějí druzí.", score: 0 },
+      { text: "Někdy souhlasím, i když bych raději řekla ne.", score: 1 },
+      { text: "Často potlačím sebe, abych nikoho nezklamala.", score: 2 }
+    ]
+  },
+  {
+    title: "Když si představíš sebe za rok, co by sis přála?",
+    answers: [
+      { text: "Pokračovat v tom, co mi funguje, a dál o sebe pečovat.", score: 0 },
+      { text: "Cítit se jinak, mít víc klidu nebo dělat věci jiným způsobem.", score: 1 },
+      { text: "Být konečně blíž životu, po kterém uvnitř toužím.", score: 2 }
+    ]
+  },
+  {
+    title: "Co obvykle uděláš, když cítíš, že něco není v pořádku?",
+    answers: [
+      { text: "Zastavím se a zkusím zjistit, co potřebuji.", score: 0 },
+      { text: "Vnímám to, ale většinou pokračuji dál a řeším to později.", score: 1 },
+      { text: "Překonám to, zatnu zuby a doufám, že to samo přejde.", score: 2 }
+    ]
+  },
+  {
+    title: "Kdybys dnes mohla udělat jednu malou věc pro sebe, jaké by to bylo?",
+    answers: [
+      { text: "Pokračovat v tom, co mi přináší radost a rovnováhu.", score: 0 },
+      { text: "Dopřát si prostor, ujasnit si priority a naslouchat sobě.", score: 1 },
+      { text: "Začít něco měnit, i kdyby to měl být jen malý první krok.", score: 2 }
+    ]
+  }
+];
+
+let currentQuestion = 0;
+let selectedAnswers = Array(questions.length).fill(null);
+
+const intro = document.getElementById("intro");
+const test = document.getElementById("test");
+const result = document.getElementById("result");
+const questionTitle = document.getElementById("questionTitle");
+const answersContainer = document.getElementById("answers");
+const nextButton = document.getElementById("nextButton");
+const backButton = document.getElementById("backButton");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const progressPercent = document.getElementById("progressPercent");
+const progressBar = document.getElementById("progressBar");
+
+document.getElementById("startButton").addEventListener("click", () => {
+  intro.classList.add("hidden");
+  result.classList.add("hidden");
+  test.classList.remove("hidden");
+  currentQuestion = 0;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+function renderQuestion() {
+  const question = questions[currentQuestion];
+  const chosen = selectedAnswers[currentQuestion];
+  const number = currentQuestion + 1;
+  const percent = Math.round(number / questions.length * 100);
+
+  questionTitle.textContent = question.title;
+  document.getElementById("questionNumber").textContent =
+    "ZASTAVENÍ " + String(number).padStart(2, "0");
+
+  progressText.textContent = `Otázka ${number} ze ${questions.length}`;
+  progressPercent.textContent = percent + " %";
+  progressFill.style.width = percent + "%";
+  progressBar.setAttribute("aria-valuenow", number);
+
+  answersContainer.innerHTML = "";
+
+  question.answers.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "answer" + (chosen === index ? " selected" : "");
+    button.setAttribute("aria-pressed", chosen === index ? "true" : "false");
+
+    const mark = document.createElement("span");
+    mark.className = "answer-mark";
+    mark.textContent = chosen === index ? "✓" : String.fromCharCode(65 + index);
+
+    const text = document.createElement("span");
+    text.textContent = answer.text;
+
+    button.appendChild(mark);
+    button.appendChild(text);
+
+    button.addEventListener("click", () => {
+      selectedAnswers[currentQuestion] = index;
+      renderQuestion();
+    });
+
+    answersContainer.appendChild(button);
+  });
+
+  backButton.disabled = currentQuestion === 0;
+  nextButton.disabled = chosen === null;
+  nextButton.textContent =
+    currentQuestion === questions.length - 1
+      ? "Zobrazit můj výsledek ✨"
+      : "Další otázka →";
+}
+
+nextButton.addEventListener("click", () => {
+  if (selectedAnswers[currentQuestion] === null) return;
+
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+backButton.addEventListener("click", () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+});
+
+function showResult() {
+  const score = selectedAnswers.reduce((sum, answerIndex, questionIndex) => {
+    return sum + questions[questionIndex].answers[answerIndex].score;
+  }, 0);
+
+  let outcome;
+
+  if (score <= 4) {
+    outcome = {
+      icon: "🌿",
+      title: "Pečuj o to, co ti dělá dobře",
+      paragraphs: [
+        "Z tvých odpovědí vyplývá, že v některých oblastech svého života máš oporu a dokážeš vnímat, co ti prospívá. To je dobrý základ.",
+        "To ale neznamená, že musíš být pořád spokojená nebo že se nic nesmí změnit. I člověk, kterému se daří, má právo chtít něco nového.",
+        "Zkus si všímat toho, co ti dodává energii, a dopřávej tomu ve svém životě místo. Nemusíš čekat, až budeš vyčerpaná, abys o sebe začala pečovat."
+      ],
+      reflection: "Co bych chtěla ve svém životě zachovat a dopřát tomu ještě více prostoru?"
+    };
+  } else if (score <= 9) {
+    outcome = {
+      icon: "🌷",
+      title: "Něco v tobě dozrává",
+      paragraphs: [
+        "Tvoje odpovědi naznačují, že některé věci už možná nevnímáš stejně jako dřív. Možná potřebuješ více prostoru, jinak nastavit své hranice nebo si ujasnit, co je pro tebe důležité.",
+        "Nemusíš hned dělat velká rozhodnutí. Začni tím, že si dovolíš své pocity brát vážně. Nemusíš mít připravený celý plán, abys mohla udělat první malý krok.",
+        "Vyber si jednu oblast, ve které by ti změna přinesla úlevu. Pak se sama sebe zeptej, co můžeš udělat už tento týden."
+      ],
+      reflection: "Kdybych se nemusela nikomu zavděčit, co bych si přála změnit jako první?"
+    };
+  } else {
+    outcome = {
+      icon: "🦋",
+      title: "Je čas dát prostor i sobě",
+      paragraphs: [
+        "Ve tvých odpovědích se opakovaně objevuje, že možná dlouho odsouváš své potřeby nebo cítíš touhu po jiném způsobu života. Stojí za to věnovat těmto pocitům pozornost.",
+        "Nemusíš všechno opustit, převrátit naruby ani mít okamžitě jasno. Změna může začít obyčejným zastavením, jedním upřímným rozhovorem nebo hranicí, kterou si dovolíš nastavit.",
+        "Pokud jsi dlouhodobě vyčerpaná, dopřej si také odpočinek a podporu. Nemusíš si všechno vyřešit sama a nemusíš se rozhodovat pod tlakem."
+      ],
+      reflection: "Jaký nejmenší krok bych mohla udělat, abych se ve svém životě cítila více sama sebou?"
+    };
+  }
+
+  document.getElementById("resultIcon").textContent = outcome.icon;
+  document.getElementById("resultTitle").textContent = outcome.title;
+
+  const resultText = document.getElementById("resultText");
+  resultText.innerHTML = "";
+
+  outcome.paragraphs.forEach(paragraph => {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    resultText.appendChild(p);
+  });
+
+  document.getElementById("reflection").textContent = outcome.reflection;
+
+  test.classList.add("hidden");
+  intro.classList.add("hidden");
+  result.classList.remove("hidden");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("restartButton").addEventListener("click", () => {
+  selectedAnswers = Array(questions.length).fill(null);
+  currentQuestion = 0;
+
+  result.classList.add("hidden");
+  intro.classList.remove("hidden");
+  test.classList.add("hidden");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+document.getElementById("contactButton").addEventListener("click", () => {
+  window.open(
+    "https://www.instagram.com/jana.pernicova/",
+    "_blank",
+    "noopener,noreferrer"
+  );
+});
+</script>
+
+</body>
+    </html>
