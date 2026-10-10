@@ -23,6 +23,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background:
@@ -107,8 +111,8 @@ h1 span {
   margin: 0 0 12px;
 }
 
-.intro p:last-child {
-  margin-bottom: 0;
+.intro p:last-of-type {
+  margin-bottom: 20px;
 }
 
 .soft-note {
@@ -119,7 +123,8 @@ h1 span {
 }
 
 .primary-button,
-.secondary-button {
+.secondary-button,
+.contact-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +135,8 @@ h1 span {
   border-radius: 14px;
   cursor: pointer;
   text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
+  text-align: center;
+  transition: transform .2s, box-shadow .2s, background .2s;
 }
 
 .primary-button {
@@ -145,10 +151,31 @@ h1 span {
   margin-top: 12px;
 }
 
+.contact-button {
+  font-weight: bold;
+}
+
+.instagram-button {
+  background: var(--dark-purple);
+  color: white;
+  box-shadow: 0 7px 18px rgba(101,81,125,.14);
+}
+
+.whatsapp-button {
+  background: #e4f3e9;
+  color: #286844;
+  margin-top: 11px;
+}
+
 .primary-button:hover,
-.secondary-button:hover {
+.secondary-button:hover,
+.contact-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(101,81,125,.15);
+}
+
+.whatsapp-button:hover {
+  background: #d6eddf;
 }
 
 button:focus-visible,
@@ -325,6 +352,52 @@ h2 {
   margin: 24px 0;
 }
 
+.coaching-invitation {
+  margin-top: 30px;
+  padding: 25px 20px;
+  background: linear-gradient(
+    145deg,
+    rgba(126,206,202,.13),
+    rgba(244,167,185,.14),
+    rgba(158,131,184,.12)
+  );
+  border: 1px solid rgba(158,131,184,.2);
+  border-radius: 20px;
+  text-align: left;
+}
+
+.coaching-invitation h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(23px, 5vw, 29px);
+  font-weight: normal;
+  line-height: 1.3;
+  text-align: center;
+  margin: 0 0 17px;
+  color: var(--dark-purple);
+}
+
+.coaching-invitation p {
+  color: #5d5662;
+  font-size: 14px;
+  margin: 0 0 15px;
+}
+
+.coaching-invitation .invitation-emphasis {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--dark-purple);
+  margin: 21px 0;
+}
+
+.contact-caption {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 18px 0 12px;
+}
+
 .author {
   margin-top: 28px;
   padding: 30px 22px;
@@ -415,6 +488,10 @@ h2 {
   .answer {
     padding: 14px 12px;
   }
+
+  .coaching-invitation {
+    padding: 22px 17px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -497,9 +574,57 @@ h2 {
     <div class="result-text" id="resultText"></div>
     <div class="reflection" id="reflection"></div>
 
-    <button class="primary-button" id="contactButton" type="button">
-      Chci udělat první krok
-    </button>
+    <section class="coaching-invitation" aria-labelledby="coachingTitle">
+      <h3 id="coachingTitle">Nemusíš na všechno přijít sama. 💜</h3>
+
+      <p>
+        Možná už víš, co chceš změnit. Možná zatím jen cítíš,
+        že potřebuješ něco jinak, ale nevíš, kde začít.
+      </p>
+
+      <p>
+        Nemusíš mít všechny odpovědi. Nemusíš mít dokonalý plán.
+        Stačí ochota podívat se na svůj život novým pohledem.
+      </p>
+
+      <p>
+        V individuálním koučinku 1:1 vytvoříme prostor jen pro tebe.
+        Pro tvoje otázky, tvoje potřeby a změny, které chceš ve svém
+        životě postupně uskutečnit.
+      </p>
+
+      <p>
+        Pokud cítíš, že je čas věnovat pozornost také sobě,
+        napiš mi. Společně probereme, co právě řešíš a zda by pro
+        tebe naše spolupráce mohla být tím správným krokem.
+      </p>
+
+      <p class="invitation-emphasis">
+        Těším se, až se poznáme. 💜
+      </p>
+
+      <a
+        class="contact-button instagram-button"
+        href="https://www.instagram.com/jana.pernicova/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Napsat Janě na Instagram
+      </a>
+
+      <a
+        class="contact-button whatsapp-button"
+        href="https://wa.me/420773664342?text=Dobr%C3%BD%20den%2C%20Jano%2C%20zaujala%20m%C4%9B%20mo%C5%BEnost%20individu%C3%A1ln%C3%ADho%20kou%C4%8Dinku%201%3A1.%20R%C3%A1da%20bych%20se%20dozv%C4%9Bd%C4%9Bla%20v%C3%ADce."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Napsat Janě na WhatsApp
+      </a>
+
+      <p class="contact-caption">
+        Vyber si, co je ti příjemnější. Budu ráda, když se ozveš.
+      </p>
+    </section>
 
     <button class="secondary-button" id="restartButton" type="button">
       Projít test znovu ↻
@@ -716,68 +841,4 @@ function showResult() {
     };
   } else if (score <= 9) {
     outcome = {
-      icon: "🌷",
-      title: "Něco v tobě dozrává",
-      paragraphs: [
-        "Tvoje odpovědi naznačují, že některé věci už možná nevnímáš stejně jako dřív. Možná potřebuješ více prostoru, jinak nastavit své hranice nebo si ujasnit, co je pro tebe důležité.",
-        "Nemusíš hned dělat velká rozhodnutí. Začni tím, že si dovolíš své pocity brát vážně. Nemusíš mít připravený celý plán, abys mohla udělat první malý krok.",
-        "Vyber si jednu oblast, ve které by ti změna přinesla úlevu. Pak se sama sebe zeptej, co můžeš udělat už tento týden."
-      ],
-      reflection: "Kdybych se nemusela nikomu zavděčit, co bych si přála změnit jako první?"
-    };
-  } else {
-    outcome = {
-      icon: "🦋",
-      title: "Je čas dát prostor i sobě",
-      paragraphs: [
-        "Ve tvých odpovědích se opakovaně objevuje, že možná dlouho odsouváš své potřeby nebo cítíš touhu po jiném způsobu života. Stojí za to věnovat těmto pocitům pozornost.",
-        "Nemusíš všechno opustit, převrátit naruby ani mít okamžitě jasno. Změna může začít obyčejným zastavením, jedním upřímným rozhovorem nebo hranicí, kterou si dovolíš nastavit.",
-        "Pokud jsi dlouhodobě vyčerpaná, dopřej si také odpočinek a podporu. Nemusíš si všechno vyřešit sama a nemusíš se rozhodovat pod tlakem."
-      ],
-      reflection: "Jaký nejmenší krok bych mohla udělat, abych se ve svém životě cítila více sama sebou?"
-    };
-  }
-
-  document.getElementById("resultIcon").textContent = outcome.icon;
-  document.getElementById("resultTitle").textContent = outcome.title;
-
-  const resultText = document.getElementById("resultText");
-  resultText.innerHTML = "";
-
-  outcome.paragraphs.forEach(paragraph => {
-    const p = document.createElement("p");
-    p.textContent = paragraph;
-    resultText.appendChild(p);
-  });
-
-  document.getElementById("reflection").textContent = outcome.reflection;
-
-  test.classList.add("hidden");
-  intro.classList.add("hidden");
-  result.classList.remove("hidden");
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-document.getElementById("restartButton").addEventListener("click", () => {
-  selectedAnswers = Array(questions.length).fill(null);
-  currentQuestion = 0;
-
-  result.classList.add("hidden");
-  intro.classList.remove("hidden");
-  test.classList.add("hidden");
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-document.getElementById("contactButton").addEventListener("click", () => {
-  window.open(
-    "https://www.instagram.com/jana.pernicova/",
-    "_blank",
-    "noopener,noreferrer"
-  );
-});
-</script>
-
-</body>
-    </html>
+  
