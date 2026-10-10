@@ -841,4 +841,60 @@ function showResult() {
     };
   } else if (score <= 9) {
     outcome = {
-  
+      icon: "🌷",
+      title: "Něco v tobě dozrává",
+      paragraphs: [
+        "Tvoje odpovědi naznačují, že některé věci už možná nevnímáš stejně jako dřív. Možná potřebuješ více prostoru, jinak nastavit své hranice nebo si ujasnit, co je pro tebe důležité.",
+        "Nemusíš hned dělat velká rozhodnutí. Začni tím, že si dovolíš své pocity brát vážně. Nemusíš mít připravený celý plán, abys mohla udělat první malý krok.",
+        "Vyber si jednu oblast, ve které by ti změna přinesla úlevu. Pak se sama sebe zeptej, co můžeš udělat už tento týden."
+      ],
+      reflection: "Kdybych se nemusela nikomu zavděčit, co bych si přála změnit jako první?"
+    };
+  } else {
+    outcome = {
+      icon: "🦋",
+      title: "Je čas dát prostor i sobě",
+      paragraphs: [
+        "Ve tvých odpovědích se opakovaně objevuje, že možná dlouho odsouváš své potřeby nebo cítíš touhu po jiném způsobu života. Stojí za to věnovat těmto pocitům pozornost.",
+        "Nemusíš všechno opustit, převrátit naruby ani mít okamžitě jasno. Změna může začít obyčejným zastavením, jedním upřímným rozhovorem nebo hranicí, kterou si dovolíš nastavit.",
+        "Pokud jsi dlouhodobě vyčerpaná, dopřej si také odpočinek a podporu. Nemusíš si všechno vyřešit sama a nemusíš se rozhodovat pod tlakem."
+      ],
+      reflection: "Jaký nejmenší krok bych mohla udělat, abych se ve svém životě cítila více sama sebou?"
+    };
+  }
+
+  document.getElementById("resultIcon").textContent = outcome.icon;
+  document.getElementById("resultTitle").textContent = outcome.title;
+
+  const resultText = document.getElementById("resultText");
+  resultText.innerHTML = "";
+
+  outcome.paragraphs.forEach(paragraph => {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    resultText.appendChild(p);
+  });
+
+  document.getElementById("reflection").textContent = outcome.reflection;
+
+  test.classList.add("hidden");
+  intro.classList.add("hidden");
+  result.classList.remove("hidden");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("restartButton").addEventListener("click", () => {
+  selectedAnswers = Array(questions.length).fill(null);
+  currentQuestion = 0;
+
+  result.classList.add("hidden");
+  intro.classList.remove("hidden");
+  test.classList.add("hidden");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+
+</body>
+</html>
